@@ -7,7 +7,28 @@
 .cardControlContainer {
     display: flex;
     justify-content: space-between;
-    width: 100px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+}
+.cardControlButton {
+    margin: 5px;
+}
+
+.list {
+    margin: 20px;
+    padding-bottom: 20px;
+}
+
+.grey {
+   opacity: 0.5;
+   color: grey;
+}
+
+.newCardForm {
+    padding: 20px;
+    margin: 20px;
+}
+
+.jumboStyle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

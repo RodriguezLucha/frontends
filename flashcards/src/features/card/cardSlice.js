@@ -11,18 +11,25 @@ export const cardSlice = createSlice({
     addCard: (state, action) => {
       let {front, back} = action.payload;
       let id = uuid();
-      cardAdapter.upsertOne(state, {front, back, id});
+      let active = true;
+      cardAdapter.upsertOne(state, {front, back, id, active});
     },
     removeCard: (state, action) => {
        cardAdapter.removeOne(state, action.payload);
     },
     shuffleCards: (state, action) => {
       state.ids = _.shuffle(state.ids);
+    },
+    deactivateCard: (state, action) => {
+      state.entities[action.payload].active = false; 
+    },
+    activateCard: (state, action) => {
+      state.entities[action.payload].active = true; 
     }
   },
 });
 
-export const { addCard, removeCard, shuffleCards } = cardSlice.actions;
+export const { addCard, removeCard, shuffleCards, deactivateCard, activateCard } = cardSlice.actions;
 
 export const { 
   selectById: selectCardById,

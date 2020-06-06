@@ -7,9 +7,11 @@ import {selectCardById} from "./cardSlice";
 import styles from "./Recall.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEquals, faNotEqual } from '@fortawesome/free-solid-svg-icons';
+import levenshtein from 'js-levenshtein';
 
 const cleanSpaces = (str) => {
   str = str.replace(/ +(?= )/g,'');
+  str = str.replace(/\n/g, " ");
   str = str.trim();
   return str;
 }
@@ -21,17 +23,23 @@ export const Recall = () => {
   let card = useSelector(state => selectCardById(state, id));
   let [matched, setMatched] = useState(false);
   let [text, setText] = useState("")
-  let [show, setShow] = useState(true);
+  let [show, setShow] = useState(false);
+  let [distance, setDistance] = useState(0);
 
   const compare = (value) => {
        setText(value);
-       cleanSpaces(card.back) === cleanSpaces(value) ? setMatched(true) : setMatched(false);
+       let cleanBack = cleanSpaces(card.back);
+       let cleanText = cleanSpaces(text);
+       (cleanText ===  cleanBack) ? setMatched(true) : setMatched(false);
+       let count = levenshtein(cleanBack, cleanText);
+       setDistance(count);
+       
   };
 
   return (
       <>
         <Jumbotron className={styles.jumbotron}>
-          <Button onClick={() => history.goBack()}>
+          <Button color="info" onClick={() => history.goBack()}>
             {leftArrayCircleFill()}
           </Button>
            <h1>Recall</h1>
@@ -51,7 +59,7 @@ export const Recall = () => {
                         type="textarea"/>
                     </FormGroup>
                     <div className={styles.checkButtonContainer}>
-                        <Button onClick={()=>setShow(!show)}>Show/Hide</Button>
+                        <Button color="primary" onClick={()=>setShow(!show)}>Show/Hide</Button>
                     </div>
                 </Form>
             </Container>
@@ -63,6 +71,9 @@ export const Recall = () => {
               :
                 <FontAwesomeIcon className={styles.notEqual} icon={faNotEqual} />
               }
+              <div>
+                {distance}
+              </div>
           </Container>
           
       {
