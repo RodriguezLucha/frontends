@@ -1,0 +1,27 @@
+Make Project
+    npx create-react-app my-app --template redux
+
+Massage the API
+Normalize the API
+    Inside a Quakka
+    import {normalize, schema} from "normalizr";
+    const itemSchema = new schema.Entity("item");
+    const parentSchema = new schema.Entity("parent", {
+        items: [items]
+    })
+    const data = normalize(originalData,parentSchema);
+    console.log(JSON.stringify(data, null, 4));
+
+Create entity adapter
+Create the slices
+Create the asyncThunks
+Export the selectors
+Export the reducer
+Persist the store to local storage
+Add reactstrap
+Add sass modules, classnames
+Add react-router
+Load initial data
+Navigate to details
+Save data
+Add animations
