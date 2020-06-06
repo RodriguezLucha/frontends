@@ -13,15 +13,118 @@ Normalize the API
     console.log(JSON.stringify(data, null, 4));
 
 Create entity adapter
+    import {createEntityAdapter} from "@reduxjs/toolkit";
+    export const myObjAdapter = createEntityAdapter();
+
 Create the slices
+    import {createSlice} from "@reduxjs/toolkit";
+    export const myObjSlice = createSlice({
+        name: "myObj",
+        reducers: {},
+        extraReducers: {
+
+        },
+    });
 Create the asyncThunks
+    export const fetchMyObj = createAsyncThunk(
+        "myObj/fetchById",
+        async(id, thunkAPI) => {
+            const response = await fetch(`/api/myobj/${id}`);
+            const json = await response.json();
+            const normalized = normalize(json, myObjResponseSchema);
+            return normalized.entities;
+        }
+    );
 Export the selectors
+    export const {
+        selectById: selectMyObjById,
+        selectIds: selectMyObjIds,
+        selectEntities: selectMyObjEntities,
+        selectAll: selectAllMyObjs,
+        selectTotal: selectTotalMyObjs
+    } = myObjAdapter.getSelectors(state => state.myObj);
 Export the reducer
+    const { reducer } = calenderSlice;
+    export default reducer;
 Persist the store to local storage
-Add reactstrap
+    import { configureStore} from "@reduxjs/toolkit";
+    import throttle from 'lodash/throttle';
+    import myObjSlick from '../features/myObj/myObj';
+    export const loadState = () => {
+      try {
+        const serializedState = localStorage.getItem("state");
+        if (!serializedState) return undefined;
+        else return JSON.parse(serializedState);
+      } catch(err) {
+        return undefined;
+      }
+    };
+    export const saveState = (state) => {
+      try {
+        const serializedState = JSON.stringify(state);
+        localStorage.setItem("state", serializedState);
+      } catch(err) {
+        console.log(err);
+      }
+    };
+    const persistedStore = loadState();
+    let store = configureStore({
+      reducer: {
+        myObj: myObjReducer
+      },
+      preloadedState: persistedStore,
+    });
+    store.subscribe(throttle(() => {
+      saveState(store.getState());
+    }, 1000));
+    export default store;
+
+Add bootstrap
+    npm i reactstrap
+    import 'bootstrap/dist/css/bootstrap.min.css';
+    import { Button } from 'reactstrap';
+    <Button color="primary" outline>
 Add sass modules, classnames
+    npm i classnames node-sass
+    MyObj.module.scss
+    @import "../../globals.module.scss";
+    let squareColor = proceed ? 'green' : 'red';
+    <div className={classnames(styles.square, squareColor)}>
+
 Add react-router
+    npm i react-router-dom
+    import { BrowserRouter, Route, Link } from "react-router-dom";
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+    
+    <Switch>
+        <Route exact path="/myobj-detail/:id" component={MyObDetail}/>
+    
+    import {useHistory} from "react-router-dom";
+    <Button onClick{() => history.goBack()}>
+
 Load initial data
+    import {useEffect} from "react";
+    import {useDispatch, useSelector} from "react-redux";
+    import {useParams} from "react-router-dom";
+    
+    let {id} = useParams();
+    
+    const myObjInfo = useSelector(state => selectMyObjById(state, id));
+    
+    useEffect( () => dispatch(fetchMyObjById(id)), []);
+
+    extraReducers: {
+        [fetchMyObjById.fulfilled]: (state, action) => {
+            myObjAdapter.upsertMany(state, action.payload.myObj);
+        }
+    }
+
 Navigate to details
+    <Link to={`/myobj_details/${id}>
+
 Save data
-Add animations
+    ...
+Animations
+    ...
