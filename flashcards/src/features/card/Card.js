@@ -41,7 +41,7 @@ export function Card() {
                   {c.front}
                 </div>
                 <div className={styles.cardControlContainer}>
-                  <Link to={`/recall`}>
+                  <Link to={`/recall/${c.id}`}>
                     <Button>
                       {playFillIcon()}
                     </Button>

@@ -1,0 +1,39 @@
+.jumbotron {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkButtonContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.cardFrontContainer {
+    display: flex;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.cardBackContainer {
+    display: flex;
+    margin-top: 20px;
+    padding: 50px;
+}
+
+.matchesContainer {
+    display: flex;
+    font-size: 2em;
+    padding: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.equal {
+    color: green;
+}
+.notEqual {
+    color: red;
+}
