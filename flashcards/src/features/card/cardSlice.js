@@ -1,5 +1,6 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import { v1 as uuid} from 'uuid'; 
+import _ from 'lodash';
 
 const cardAdapter = createEntityAdapter();
 
@@ -14,11 +15,14 @@ export const cardSlice = createSlice({
     },
     removeCard: (state, action) => {
        cardAdapter.removeOne(state, action.payload);
+    },
+    shuffleCards: (state, action) => {
+      state.ids = _.shuffle(state.ids);
     }
   },
 });
 
-export const { addCard, removeCard } = cardSlice.actions;
+export const { addCard, removeCard, shuffleCards } = cardSlice.actions;
 
 export const { 
   selectById: selectCardById,

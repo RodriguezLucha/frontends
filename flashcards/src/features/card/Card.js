@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addCard, removeCard, selectAllCards } from "./cardSlice";
-import { trashFillIcon, playFillIcon } from "../../icons";
+import { addCard, removeCard, selectAllCards, shuffleCards } from "./cardSlice";
+import { trashFillIcon, playFillIcon, shuffleIcon } from "../../icons";
 import { Link } from "react-router-dom";
 import styles from "./Card.module.scss";
 import {
@@ -55,6 +55,9 @@ export function Card() {
           </ListGroupItem>
         )}
       </ListGroup>
+      <Button onClick={() => dispatch(shuffleCards())}>
+        {shuffleIcon()}
+      </Button>
       <Form>
         <FormGroup>
           <Label for="cardTitle">Front</Label>

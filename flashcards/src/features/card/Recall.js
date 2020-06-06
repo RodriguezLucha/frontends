@@ -56,7 +56,6 @@ export const Recall = () => {
                 </Form>
             </Container>
           </RSCard>
-
           <Container className={styles.matchesContainer}>
               {
               matched ? 
