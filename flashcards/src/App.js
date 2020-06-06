@@ -1,10 +1,17 @@
 import React from 'react';
-import { Counter } from './features/counter/Counter';
+import { Card } from './features/card/Card';
+import { Recall } from './features/card/Recall';
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-       the app
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Card}/>
+          <Route exact path="/recall/" component={Recall}/>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

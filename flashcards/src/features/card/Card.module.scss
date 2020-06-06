@@ -1,0 +1,13 @@
+.cardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardControlContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

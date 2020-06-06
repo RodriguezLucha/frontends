@@ -80,7 +80,7 @@ Persist the store to local storage
     export default store;
 
 Add bootstrap
-    npm i reactstrap
+    npm i bootstrap bootstrap-icons reactstrap
     import 'bootstrap/dist/css/bootstrap.min.css';
     import { Button } from 'reactstrap';
     <Button color="primary" outline>
@@ -92,7 +92,7 @@ Add sass modules, classnames
     <div className={classnames(styles.square, squareColor)}>
 
 Add react-router
-    npm i react-router-dom
+    npm i react-router
     import { BrowserRouter, Route, Link } from "react-router-dom";
     <BrowserRouter>
         <App />
