@@ -36,13 +36,14 @@ export function Card() {
   };
 
   return (
-    <Container>
+    <>
       <Jumbotron className={styles.jumboStyle}>
       <h1>Cards</h1>
       <Button color="info" onClick={() => dispatch(shuffleCards())}>
         {shuffleIcon()}
       </Button>
       </Jumbotron>
+    <Container>
       <h3>Active Cards</h3>
       <ListGroup className={styles.list}>
         {activeCards.map(c =>
@@ -115,5 +116,6 @@ export function Card() {
         )}
       </ListGroup>
     </Container>
+    </>
   );
 }
