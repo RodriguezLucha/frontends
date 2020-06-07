@@ -9,8 +9,8 @@ export const cardSlice = createSlice({
   initialState: cardAdapter.getInitialState(),
   reducers: {
     addCard: (state, action) => {
-      let {front, back} = action.payload;
-      let id = uuid();
+      let {front, back, id} = action.payload;
+      id = id ? id : uuid();
       let active = true;
       cardAdapter.upsertOne(state, {front, back, id, active});
     },
