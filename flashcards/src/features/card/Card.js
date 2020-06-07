@@ -88,6 +88,7 @@ export function Card() {
             <Input
               id="cardContent"
               type="textarea"
+              rows={6}
               onChange={e => setBack(e.target.value)}
               placeholder="Back of card..."
               value={back}

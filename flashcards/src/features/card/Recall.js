@@ -55,6 +55,7 @@ export const Recall = () => {
                     <FormGroup>
                         <Input 
                         value={text} 
+                        rows={6}
                         onChange={ (e)=> compare(e.target.value) } 
                         type="textarea"/>
                     </FormGroup>
