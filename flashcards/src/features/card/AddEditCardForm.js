@@ -19,7 +19,6 @@ export function AddEditCard() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
   const [front, setFront] = useState("");
   const [back, setBack] = useState("");
 
@@ -30,7 +29,7 @@ export function AddEditCard() {
   useEffect(() => {
     card && setFront(card.front);
     card && setBack(card.back);
-  }, []);
+  }, [card]);
  
   const onAddCard = () => {
     dispatch(addCard({ front, back, id }));
