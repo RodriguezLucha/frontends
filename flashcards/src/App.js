@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from './features/card/Card';
-import { Recall } from './features/card/Recall';
+import { Recall } from './features/recall/Recall';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 function App() {

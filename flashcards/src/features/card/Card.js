@@ -1,3 +1,4 @@
+import { AddCard } from './AddCard';
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addCard, removeCard, selectAllCards, shuffleCards, deactivateCard, activateCard } from "./cardSlice";
@@ -7,18 +8,15 @@ import styles from "./Card.module.scss";
 import classnames from "classnames";
 import {
   Container,
-  Form,
-  FormGroup,
-  Input,
   Button,
   ListGroup,
   ListGroupItem,
-  Label,
   Card as RSCard,
   Jumbotron
 } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+
 
 export function Card() {
   const cards = useSelector(selectAllCards);
@@ -71,32 +69,7 @@ export function Card() {
           </ListGroupItem>
         )}
       </ListGroup>
-      <h3>Add Cards</h3>
-      <RSCard className={styles.newCardForm}>
-        <Form>
-          <FormGroup>
-            <Label for="cardTitle">Front</Label>
-            <Input
-              id="cardTitle"
-              onChange={e => setFront(e.target.value)}
-              placeholder="Front of card..."
-              value={front}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="cardContent">Back</Label>
-            <Input
-              id="cardContent"
-              type="textarea"
-              rows={6}
-              onChange={e => setBack(e.target.value)}
-              placeholder="Back of card..."
-              value={back}
-            />
-          </FormGroup>
-          <Button onClick={() => onAddCard()}>Add Card</Button>
-        </Form>
-      </RSCard>
+      <AddCard setFront={setFront} front={front} setBack={setBack} back={back} onAddCard={onAddCard}  />  
       <h3>Inactive Cards</h3>
       <ListGroup className={classnames(styles.list, styles.grey)}>
         {inactiveCards.map(c =>

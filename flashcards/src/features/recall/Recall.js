@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Button, Container, Card as RSCard, Form, FormGroup, Input, Jumbotron } from "reactstrap";
 import { leftArrayCircleFill } from "../../icons";
 import {useSelector} from "react-redux";
-import {selectCardById} from "./cardSlice";
+import {selectCardById} from "../card/cardSlice";
 import styles from "./Recall.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEquals, faNotEqual } from '@fortawesome/free-solid-svg-icons';
