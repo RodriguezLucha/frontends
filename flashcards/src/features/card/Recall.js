@@ -81,14 +81,9 @@ export const Recall = () => {
           show && 
           <RSCard className={styles.cardBackContainer}>
               <Container>
-                {
-                  (() => {
-                    let lines = card.back.split("\n");
-                    return (<>
-                      {lines.map(l => <div key={l}>{`${l}`}<br/></div>)}
-                    </>)
-                  })()
-                }
+                <pre>
+                  {card.back}
+                </pre>
               </Container>
           </RSCard>
       }

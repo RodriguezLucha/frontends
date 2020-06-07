@@ -22,19 +22,18 @@ Create the slices
         name: "myObj",
         reducers: {},
         extraReducers: {
-
         },
     });
 Create the asyncThunks
-    export const fetchMyObj = createAsyncThunk(
-        "myObj/fetchById",
-        async(id, thunkAPI) => {
-            const response = await fetch(`/api/myobj/${id}`);
-            const json = await response.json();
-            const normalized = normalize(json, myObjResponseSchema);
-            return normalized.entities;
-        }
-    );
+export const fetchMyObj = createAsyncThunk(
+    "myObj/fetchById",
+    async(id, thunkAPI) => {
+        const response = await fetch(`/api/myobj/${id}`);
+        const json = await response.json();
+        const normalized = normalize(json, myObjResponseSchema);
+        return normalized.entities;
+    }
+);
 Export the selectors
     export const {
         selectById: selectMyObjById,
