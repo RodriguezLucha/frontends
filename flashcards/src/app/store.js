@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import card from '../features/card/cardSlice';
+import category from '../features/category/categorySlice';
 import throttle from 'lodash/throttle';
 
 export const loadState = () => {
@@ -26,7 +27,8 @@ const persistedStore = loadState();
 
 let store = configureStore({
   reducer: {
-    card
+    card,
+    category
   },
   preloadedState: persistedStore,
 });

@@ -1,0 +1,23 @@
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fullWidth {
+    width: 100%;
+    margin: 20px;
+}
+.margin {
+    margin: 20px;
+}
+
+.addCategoryButton {
+    margin: 50px;
+}
+.listGroupItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
