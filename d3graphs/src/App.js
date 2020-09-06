@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './App.css';
+import { select } from 'd3';
 
 function App() {
+  const [data, setData] = useState([25, 50, 75]);
+  const svgRef = useRef();
+
+  useEffect(() => {
+    const svg = select(svgRef.current);
+    svg
+      .selectAll("circle")
+      .data(data)
+      .join("circle")
+      .attr("r", value=>value)
+      .transition()
+      .duration(2000)
+      .attr("cx", value=> value*5)
+      .attr("cy", value=>value*5)
+      .attr("stroke", "red");
+  }, [data]);
+
+
   return (
     <div className="App">
-     app
+      <svg ref={svgRef} width="500px" height="500px"></svg>
+      <button onClick={() => setData(data.map(value => value+5))}>
+        Updata data
+      </button>
+      <button onClick={()=>setData(data.filter(value=>value<35))}>
+        Filter data
+      </button>
     </div>
   );
 } 
