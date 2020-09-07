@@ -1,0 +1,16 @@
+Group
+=====
+id
+description
+
+Habit
+=====
+id
+sort_order
+description
+total_reps
+num_reps_done
+current_rep
+rep_history
+group_id
+

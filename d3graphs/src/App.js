@@ -1,9 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
-import './App.css';
-import { select } from 'd3';
+import React, {useState, useEffect, useRef} from 'react';
 
-function App() {
-  const [data, setData] = useState([25, 50, 75]);
+import './App.css';
+import {select} from 'd3';
+
+function App(){
+  const [data, setData] = useState([20, 25, 30]);
   const svgRef = useRef();
 
   useEffect(() => {
@@ -15,7 +16,7 @@ function App() {
       .attr("r", value=>value)
       .transition()
       .duration(2000)
-      .attr("cx", value=> value*5)
+      .attr("cx", value=> value*10)
       .attr("cy", value=>value*5)
       .attr("stroke", "red");
   }, [data]);
