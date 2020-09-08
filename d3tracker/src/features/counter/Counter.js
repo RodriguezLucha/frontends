@@ -1,60 +1,69 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
-  selectCount,
-} from './counterSlice';
-import styles from './Counter.module.css';
+import { useSelector, useDispatch } from "react-redux";
+import React, { useRef, useEffect } from "react";
+import styles from "./Counter.module.css";
+import { select, scaleBand, scaleLinear, max } from "d3";
+import useResizeObserver from "../../useResizeObserver";
+
 
 export function Counter() {
-  const count = useSelector(selectCount);
-  const dispatch = useDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
+
+  const svgRef = useRef();
+  const wrapperRef = useRef();
+  const dimensions = useResizeObserver(wrapperRef);
+
+  let data = [
+    {
+      name: "alpha",
+      value: 200,
+      total: 1000,
+      color: "#f4efd3"
+    },
+    {
+      name: "beta",
+      value: 70,
+      total: 100,
+      color: "#cccccc"
+    }
+  ];
+
+  useEffect(() => {
+    const svg = select(svgRef.current);
+    if (!dimensions) return;
+
+    // sorting the data
+    data.sort((a, b) => b.value - a.value);
+
+    const yScale = scaleBand()
+      .paddingInner(0.1)
+      .domain(data.map((value, index) => index)) // [0,1,2,3,4,5]
+      .range([0, dimensions.height]); // [0, 200]
+
+    //CURRENT: This needs to be an array.
+    const xScale = scaleLinear()
+      .domain([0, max(data, entry => entry.total)]) // [0, 65 (example)]
+      .range([0, dimensions.width]); // [0, 400 (example)]
+
+    // draw the bars
+    svg
+      .selectAll(".bar")
+      .data(data, (entry, index) => entry.name)
+      .join(enter =>
+        enter.append("rect").attr("y", (entry, index) => yScale(index))
+      )
+      .attr("fill", entry => entry.color)
+      .attr("class", "bar")
+      .attr("x", 0)
+      .attr("height", yScale.bandwidth())
+      .transition()
+      .attr("width", entry => xScale(entry.value))
+      .attr("y", (entry, index) => yScale(index));
+
+
+  }, [data, dimensions]);
 
   return (
-    <div>
-      <div className={styles.row}>
-        <button
-          className={styles.button}
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          +
-        </button>
-        <span className={styles.value}>{count}</span>
-        <button
-          className={styles.button}
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          -
-        </button>
-      </div>
-      <div className={styles.row}>
-        <input
-          className={styles.textbox}
-          aria-label="Set increment amount"
-          value={incrementAmount}
-          onChange={e => setIncrementAmount(e.target.value)}
-        />
-        <button
-          className={styles.button}
-          onClick={() =>
-            dispatch(incrementByAmount(Number(incrementAmount) || 0))
-          }
-        >
-          Add Amount
-        </button>
-        <button
-          className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}
-        >
-          Add Async
-        </button>
-      </div>
+    <div ref={wrapperRef} style={{ marginBottom: "2rem" }}>
+      <svg ref={svgRef}></svg>
     </div>
   );
 }
