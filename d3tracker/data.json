@@ -1,0 +1,12 @@
+{
+  "id": "859475a8-97c6-4cf6-833d-40470d8aa2b7",
+  "sort_order": 2,
+  "description": "item 1",
+  "total_reps": 1000,
+  "num_reps_done": 500,
+  "rep_history": [true, true, true, true, 
+                  true, true, true, true, 
+                  true, true, true, true, 
+                  true, true, true, true],
+  "group_id": "0d7e2b8b-3412-4b91-bd02-580ddfadac0e"
+}
