@@ -1,12 +1,20 @@
-{
-  "id": "859475a8-97c6-4cf6-833d-40470d8aa2b7",
-  "sort_order": 2,
-  "description": "item 1",
-  "total_reps": 1000,
-  "num_reps_done": 500,
-  "rep_history": [true, true, true, true, 
-                  true, true, true, true, 
-                  true, true, true, true, 
-                  true, true, true, true],
-  "group_id": "0d7e2b8b-3412-4b91-bd02-580ddfadac0e"
-}
+[
+  {
+    "id": "859475a8-97c6-4cf6-833d-40470d8aa2b7",
+    "sort_order": 2,
+    "description": "item 1",
+    "total_reps": 1000,
+    "num_reps_done": 700,
+    "last_four": [true, true, true, true],
+    "group_id": "0d7e2b8b-3412-4b91-bd02-580ddfadac0e"
+  },
+  {
+    "id": "258b7b11-ea06-4d42-bb8b-8c6c66920961",
+    "sort_order": 2,
+    "description": "item 2",
+    "total_reps": 10,
+    "num_reps_done": 4,
+    "last_four": [true, true, true, true],
+    "group_id": "4736179a-9524-48cf-b41d-66d8fc8affba"
+  }
+]
