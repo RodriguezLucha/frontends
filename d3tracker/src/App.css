@@ -31,3 +31,15 @@ video {
   top: auto;
   width: 100%;
 }
+
+
+.d3button:hover {
+  color: blue;
+}
+
+.d3button {
+  font-size: 4em;
+}
+.d3button:hover {
+  color: blue;
+}
